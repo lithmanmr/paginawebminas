@@ -5,6 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CEIM UNSCH | Centro de Estudiantes de Ingeniería de Minas</title>
   <meta name="description" content="Centro de Estudiantes de Ingeniería de Minas - Universidad Nacional de San Cristóbal de Huamanga, Ayacucho, Perú.">
+  <!-- FAVICON -->
+  <link rel="icon" type="image/jpeg" href="assets/ceim.jpeg">
+  <link rel="apple-touch-icon" href="assets/ceim.jpeg">
+  <!-- SEO y Vista Previa en Google / Redes Sociales -->
+  <meta name="description" content="Centro de Estudiantes de Ingeniería de Minas (CEIM) de la Universidad Nacional de San Cristóbal de Huamanga, Ayacucho, Perú. Representación estudiantil, eventos, asesorías y más.">
+  <meta name="keywords" content="CEIM, Ingeniería de Minas, UNSCH, Ayacucho, centro de estudiantes, minería Perú">
+  <meta name="author" content="CEIM – UNSCH">
+
+  <!-- Open Graph (vista previa en Google, Facebook, WhatsApp) -->
+  <meta property="og:title" content="CEIM UNSCH | Centro de Estudiantes de Ingeniería de Minas">
+  <meta property="og:description" content="Centro de Estudiantes de Ingeniería de Minas de la UNSCH, Ayacucho. Eventos, asesorías, logros y representación estudiantil.">
+  <meta property="og:image" content="assets/ceim.jpeg">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_PE">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -1714,13 +1729,14 @@
 
   <div class="noticias-grid">
 
-    <!--
+        <!--
     ════════════════════════════════════════════════════════
     🗞️ NOTICIA 1
     Copia todo este bloque <article> para agregar más noticias.
     ════════════════════════════════════════════════════════
     -->
     <article class="noticia-card reveal">
+
       <div class="noticia-img" style="background-image:url('assets/noticias_simposio.jpeg')">
         <!--
         📸 FOTO DE NOTICIA 1
@@ -1729,71 +1745,209 @@
         Tamaño ideal: 600×400 px
         -->
       </div>
+
       <div class="noticia-body">
         <div class="noticia-meta">
-          <!-- 📝 Cambia la categoría y fecha -->
+          <!-- 📝 Cambia la categoría (Académico / Evento / Concurso / etc.) -->
           <span class="noticia-cat">Académico</span>
+          <!-- 📝 Cambia la fecha -->
           <span class="noticia-fecha">31 Agosto 2026</span>
+          <span style="position:absolute; top:1rem; left:1rem; z-index:1;
+             background:#E05A1C; color:#fff; font-size:.6rem;
+             font-weight:700; letter-spacing:.2em; padding:.25rem .6rem;
+             border-radius:2px; text-transform:uppercase;">PRÓXIMO</span>
         </div>
+
         <!-- 📝 Cambia el título de la noticia -->
         <h3>V SIMPOSIO INTERNACIONAL EN VENTILACIÓN DE MINAS DE IBEROAMÉRICA</h3>
-        <!-- 📝 Cambia el resumen -->
-        <p>El V Simposio Internacional en Ventilación de Minas de Iberoamérica tendrá como sede la histórica ciudad de Ayacucho, Perú, cuna de tradición cultural y académica.
-            La Universidad Nacional de San Cristóbal de Huamanga (UNSCH), a través de su Escuela Profesional de Ingeniería de Minas, 
-            es anfitriona de este importante encuentro internacional que se llevará a cabo del 31 de agosto al 4 de septiembre de 2026.</p>
-        <a href="#" class="noticia-link">Leer más →</a>
+
+        <!-- 📝 Texto corto que se ve siempre (2-3 líneas máximo) -->
+        <p>El V Simposio Internacional en Ventilación de Minas de Iberoamérica tendrá como
+          sede la histórica ciudad de Ayacucho, Perú, cuna de tradición cultural y académica.
+          La UNSCH, a través de su Escuela Profesional de Ingeniería de Minas, es anfitriona
+          de este importante encuentro del 31 de agosto al 4 de septiembre de 2026.</p>
+
+        <!-- 📝 Texto extra que aparece al hacer clic en "Leer más"
+            Escribe aquí todo el contenido adicional que quieras mostrar -->
+        <p id="extra-noticia1" style="display:none; margin-top:.6rem;">
+          El simposio reunirá a expertos, investigadores y profesionales del sector minero
+          de toda Iberoamérica para compartir avances tecnológicos, investigaciones y
+          experiencias en ventilación de minas subterráneas. Una oportunidad única para
+          los estudiantes de la UNSCH de conectar con la comunidad científica internacional
+          y conocer de primera mano las últimas tendencias en seguridad y eficiencia
+          en operaciones mineras subterráneas.
+        </p>
+
+        <!--
+        ⚠️ IMPORTANTE: Si copias este bloque para otra noticia,
+        cambia "extraN1" y "btnN1" por "extraN2" y "btnN2"
+        (o el número que corresponda) para que cada noticia
+        funcione por separado.
+        -->
+        <a href="javascript:void(0)" class="noticia-link" id="btn-noticia1"
+          onclick="
+            const extraN1 = document.getElementById('extra-noticia1');
+            const btnN1   = document.getElementById('btn-noticia1');
+            if (extraN1.style.display === 'none') {
+              extraN1.style.display = 'block';
+              btnN1.textContent = 'Leer menos ↑';
+            } else {
+              extraN1.style.display = 'none';
+              btnN1.textContent = 'Leer más →';
+            }
+          ">
+          Leer más →
+        </a>
+
       </div>
     </article>
 
-    <!--
+        <!--
     ════════════════════════════════════════════════════════
     🗞️ NOTICIA 2
+    Copia todo este bloque <article> para agregar más noticias.
     ════════════════════════════════════════════════════════
     -->
     <article class="noticia-card reveal">
+
       <div class="noticia-img" style="background-image:url('assets/noticias_andesmin.jpg')">
         <!--
         📸 FOTO DE NOTICIA 2
-        Reemplaza la URL por tu foto.
+        Reemplaza la URL por la ruta de tu foto.
+        Ej: style="background-image:url('img/noticias/noticia2.jpg')"
+        Tamaño ideal: 600×400 px
         -->
       </div>
+
       <div class="noticia-body">
         <div class="noticia-meta">
+          <!-- 📝 Cambia la categoría (Académico / Evento / Concurso / etc.) -->
           <span class="noticia-cat">Evento</span>
+          <!-- 📝 Cambia la fecha -->
           <span class="noticia-fecha">29 Octubre 2026</span>
+          <span style="position:absolute; top:1rem; left:1rem; z-index:1;
+             background:#E05A1C; color:#fff; font-size:.6rem;
+             font-weight:700; letter-spacing:.2em; padding:.25rem .6rem;
+             border-radius:2px; text-transform:uppercase;">PRÓXIMO</span>
         </div>
+
+        <!-- 📝 Cambia el título de la noticia -->
         <h3>ANDESMIN Ayacucho 2026</h3>
-        <p>ANDESMIN Ayacucho 2026 reunirá a líderes del sector minero, proveedores, academia y sector público para construir una visión sostenible en nuestro país con proyección al 2040.
-          Cuatro días donde la minería se conecta con el progreso regional, se fortalecen alianzas estratégicas y
-           se generan oportunidades reales de inversión. Un espacio diseñado para impulsar competitividad, innovación y crecimiento sostenible.</p>
-        <a href="#" class="noticia-link">Leer más →</a>
+
+        <!-- 📝 Texto corto que se ve siempre (2-3 líneas máximo) -->
+        <p>ANDESMIN Ayacucho 2026 reunirá a líderes del sector minero, proveedores,
+          academia y sector público para construir una visión sostenible en nuestro
+          país con proyección al 2040.</p>
+
+        <!-- 📝 Texto extra que aparece al hacer clic en "Leer más"
+            Escribe aquí todo el contenido adicional que quieras mostrar -->
+        <p id="extra-noticia2" style="display:none; margin-top:.6rem;">
+          Cuatro días donde la minería se conecta con el progreso regional, se fortalecen
+          alianzas estratégicas y se generan oportunidades reales de inversión. Un espacio
+          diseñado para impulsar competitividad, innovación y crecimiento sostenible.
+          Los estudiantes de Ingeniería de Minas de la UNSCH tendrán la oportunidad de
+          participar y relacionarse con los principales actores de la industria minera
+          nacional e internacional.
+        </p>
+
+        <!--
+        ⚠️ IMPORTANTE: Si copias este bloque para otra noticia,
+        cambia "extraN2" y "btnN2" por "extraN3" y "btnN3"
+        (o el número que corresponda) para que cada noticia
+        funcione por separado.
+        -->
+        <a href="javascript:void(0)" class="noticia-link" id="btn-noticia2"
+          onclick="
+            const extraN2 = document.getElementById('extra-noticia2');
+            const btnN2   = document.getElementById('btn-noticia2');
+            if (extraN2.style.display === 'none') {
+              extraN2.style.display = 'block';
+              btnN2.textContent = 'Leer menos ↑';
+            } else {
+              extraN2.style.display = 'none';
+              btnN2.textContent = 'Leer más →';
+            }
+          ">
+          Leer más →
+        </a>
+
+      </div>
+    </article>
+
+        <!--
+    ════════════════════════════════════════════════════════
+    🗞️ NOTICIA 3
+    Copia todo este bloque <article> para agregar más noticias.
+    ════════════════════════════════════════════════════════
+    -->
+    <article class="noticia-card reveal">
+
+      <div class="noticia-img" style="background-image:url('assets/noticias_coneimin.jpg')">
+        <!--
+        📸 FOTO DE NOTICIA 3
+        Reemplaza la URL por la ruta de tu foto.
+        Ej: style="background-image:url('img/noticias/noticia3.jpg')"
+        Tamaño ideal: 600×400 px
+        -->
+      </div>
+
+      <div class="noticia-body">
+        <div class="noticia-meta">
+          <!-- 📝 Cambia la categoría (Académico / Evento / Concurso / etc.) -->
+          <span class="noticia-cat">Concurso Académico</span>
+          <!-- 📝 Cambia la fecha -->
+          <span class="noticia-fecha">24 Agosto 2026</span>
+          <span style="position:absolute; top:1rem; left:1rem; z-index:1;
+             background:#E05A1C; color:#fff; font-size:.6rem;
+             font-weight:700; letter-spacing:.2em; padding:.25rem .6rem;
+             border-radius:2px; text-transform:uppercase;">PRÓXIMO</span>
+        </div>
+
+        <!-- 📝 Cambia el título de la noticia -->
+        <h3>CONEIMIN UNI 2026</h3>
+
+        <!-- 📝 Texto corto que se ve siempre (2-3 líneas máximo) -->
+        <p>En el año del 150° aniversario de la Universidad Nacional de Ingeniería,
+          nos enorgullece presentar la identidad visual renovada del XIX CONEIMIN
+          - Lima 2026, simbolizando la unión entre tradición histórica e innovación
+          tecnológica de la minería moderna.</p>
+
+        <!-- 📝 Texto extra que aparece al hacer clic en "Leer más"
+            Escribe aquí todo el contenido adicional que quieras mostrar -->
+        <p id="extra-noticia3" style="display:none; margin-top:.6rem;">
+          Iniciamos el camino hacia agosto de 2026 con un solo objetivo: elevar el
+          estándar de la ingeniería de minas. Los estudiantes de la UNSCH participarán
+          representando a Ayacucho en las distintas categorías del concurso nacional,
+          defendiendo los logros obtenidos en ediciones anteriores donde obtuvimos
+          primeros y terceros lugares en Topografía Minera, Planeamiento Subterráneo
+          y Seguridad Minera.
+        </p>
+
+        <!--
+        ⚠️ IMPORTANTE: Si copias este bloque para otra noticia,
+        cambia "extraN3" y "btnN3" por "extraN4" y "btnN4"
+        (o el número que corresponda) para que cada noticia
+        funcione por separado.
+        -->
+        <a href="javascript:void(0)" class="noticia-link" id="btn-noticia3"
+          onclick="
+            const extraN3 = document.getElementById('extra-noticia3');
+            const btnN3   = document.getElementById('btn-noticia3');
+            if (extraN3.style.display === 'none') {
+              extraN3.style.display = 'block';
+              btnN3.textContent = 'Leer menos ↑';
+            } else {
+              extraN3.style.display = 'none';
+              btnN3.textContent = 'Leer más →';
+            }
+          ">
+          Leer más →
+        </a>
+
       </div>
     </article>
 
     <!--
-    ════════════════════════════════════════════════════════
-    🗞️ NOTICIA 3
-    ════════════════════════════════════════════════════════
-    -->
-    <article class="noticia-card reveal">
-      <div class="noticia-img" style="background-image:url('assets/noticias_coneimin.jpg')">
-        <!--
-        📸 FOTO DE NOTICIA 3
-        Reemplaza la URL por tu foto.
-        -->
-      </div>
-      <div class="noticia-body">
-        <div class="noticia-meta">
-          <span class="noticia-cat">Concurso Académico</span>
-          <span class="noticia-fecha">24 Agosto 2026</span>
-        </div>
-        <h3>CONEIMIN UNI 2026</h3>
-        <p>En el año del 150° aniversario de la Universidad Nacional de Ingeniería, nos enorgullece presentar la identidad visual renovada del XIX CONEIMIN - Lima 2026. ⚒️
-           Esta nueva imagen simboliza la unión entre nuestra tradición histórica y la innovación tecnológica 
-           que define a la minería moderna. Iniciamos el camino hacia agosto de 2026 con un solo objetivo: elevar el estándar de la ingeniería de minas.</p>
-        <a href="#" class="noticia-link">Leer más →</a>
-      </div>
-    </article>
 
     <!-- ✅ AGREGA MÁS NOTICIAS COPIANDO EL BLOQUE <article class="noticia-card"> -->
 
@@ -1827,7 +1981,7 @@
       </div>
       <div class="evento-info">
         <!-- 📝 Cambia el nombre, descripción, hora y lugar del evento -->
-        <h3>Aniversario de la Escuela Profesional de Ingeniería de Minas 🥳🤗</h3>
+        <h3>Aniversario de la Escuela Profesional de Ingeniería de Minas</h3>
         <p>La reconocida Escuela Profesional de Ingeniería de Minas cumple 
           68 años de imparable labor formando profesionales íntegros y altamente capacitados.</p>
         <div class="evento-meta">
@@ -2327,69 +2481,104 @@
     ════════════════════════════════════════════════════════
     -->
 
-    <div class="galeria-item tall reveal" style="background-image:url('assets/logros1.jpg')">
+    <div class="galeria-item tall reveal" style="background-image:url('assets/logros14.jpg')">
       <!-- 📸 FOTO GALERÍA 1 · Reemplaza la URL · Descripción abajo -->
-      <div class="galeria-overlay"><span>Trabajos de campo</span></div>
+      <div class="galeria-overlay"><span>Bienvenida de Cachimbos</span></div>
+    </div>
+
+    <div class="galeria-item tall reveal" style="background-image:url('assets/logros13.jpg')">
+      <!-- 📸 FOTO GALERÍA 1 · Reemplaza la URL · Descripción abajo -->
+      <div class="galeria-overlay"><span>Bienvenida de Cachimbos</span></div>
+    </div>
+
+    <div class="galeria-item wide reveal" style="background-image:url('assets/logros15.jpg')">
+      <!-- 📸 FOTO GALERÍA 9 · wide = más ancha -->
+      <div class="galeria-overlay"><span>Bienvenida de Cachimbos</span></div>
+    </div>
+
+    <div class="galeria-item wide reveal" style="background-image:url('assets/logros16.jpg')">
+      <!-- 📸 FOTO GALERÍA 9 · wide = más ancha -->
+      <div class="galeria-overlay"><span>Bienvenida de Cachimbos</span></div>
+    </div>
+
+    <div class="galeria-item reveal" style="background-image:url('assets/logros19.jpg')">
+      <!-- 📸 FOTO GALERÍA 2 -->
+      <div class="galeria-overlay"><span>Bienvenida de Cachimbos</span></div>
+    </div>
+
+    <div class="galeria-item wide reveal" style="background-image:url('assets/logros17.jpg')">
+      <!-- 📸 FOTO GALERÍA 9 · wide = más ancha -->
+      <div class="galeria-overlay"><span>Lanzamiento Andesmin 2026</span></div>
+    </div>
+
+    <div class="galeria-item wide reveal" style="background-image:url('assets/logros18.jpg')">
+      <!-- 📸 FOTO GALERÍA 9 · wide = más ancha -->
+      <div class="galeria-overlay"><span>Lanzamiento Andesmin 2026</span></div>
+    </div>
+
+    <div class="galeria-item reveal" style="background-image:url('assets/logros1.jpg')">
+      <!-- 📸 FOTO GALERÍA 2 -->
+      <div class="galeria-overlay"><span>Premiación CONEIMIN 2025</span></div>
     </div>
 
     <div class="galeria-item reveal" style="background-image:url('assets/logros2.jpg')">
       <!-- 📸 FOTO GALERÍA 2 -->
-      <div class="galeria-overlay"><span>Laboratorio de muestras</span></div>
+      <div class="galeria-overlay"><span>Premiación CONEIMIN 2025</span></div>
     </div>
 
     <div class="galeria-item reveal" style="background-image:url('assets/logros3.jpg')">
       <!-- 📸 FOTO GALERÍA 3 -->
-      <div class="galeria-overlay"><span>Congreso estudiantil</span></div>
+      <div class="galeria-overlay"><span>Premiación CONEIMIN 2025</span></div>
     </div>
 
     <div class="galeria-item wide reveal" style="background-image:url('assets/logros4.jpg')">
       <!-- 📸 FOTO GALERÍA 4 · wide = más ancha -->
-      <div class="galeria-overlay"><span>Visita técnica</span></div>
+      <div class="galeria-overlay"><span>Premiación CONEIMIN 2025</span></div>
     </div>
 
     <div class="galeria-item reveal" style="background-image:url('assets/logros5.jpg')">
       <!-- 📸 FOTO GALERÍA 5 -->
-      <div class="galeria-overlay"><span>Premiación anual</span></div>
+      <div class="galeria-overlay"><span>Premiación CONEIMIN 2025</span></div>
     </div>
 
     <div class="galeria-item reveal" style="background-image:url('assets/logros6.jpg')">
       <!-- 📸 FOTO GALERÍA 6 -->
-      <div class="galeria-overlay"><span>Feria de empleo</span></div>
+      <div class="galeria-overlay"><span>Premiación CONEIMIN 2025</span></div>
     </div>
 
     <div class="galeria-item reveal" style="background-image:url('assets/logros7.jpg')">
       <!-- 📸 FOTO GALERÍA 7 -->
-      <div class="galeria-overlay"><span>Feria de empleo</span></div>
+      <div class="galeria-overlay"><span>Premiación CONEIMIN 2025</span></div>
     </div>
 
     <div class="galeria-item reveal" style="background-image:url('assets/logros9.jpg')">
       <!-- 📸 FOTO GALERÍA 8 -->
-      <div class="galeria-overlay"><span>Feria de empleo</span></div>
+      <div class="galeria-overlay"><span>Marco musical premiación</span></div>
     </div>
 
     <div class="galeria-item wide reveal" style="background-image:url('assets/logros8.jpg')">
       <!-- 📸 FOTO GALERÍA 9 · wide = más ancha -->
-      <div class="galeria-overlay"><span>Visita técnica</span></div>
+      <div class="galeria-overlay"><span>Premiación CONEIMIN 2025</span></div>
     </div>
 
     <div class="galeria-item reveal" style="background-image:url('assets/logros10.jpg')">
       <!-- 📸 FOTO GALERÍA 10 -->
-      <div class="galeria-overlay"><span>Feria de empleo</span></div>
+      <div class="galeria-overlay"><span>Pasacalle - Aniversario UNSCH</span></div>
     </div>
 
     <div class="galeria-item reveal" style="background-image:url('assets/logros11.jpg')">
       <!-- 📸 FOTO GALERÍA 11 -->
-      <div class="galeria-overlay"><span>Feria de empleo</span></div>
+      <div class="galeria-overlay"><span>Pasacalle - Aniversario UNSCH</span></div>
     </div>
 
     <div class="galeria-item reveal" style="background-image:url('assets/logros12.jpg')">
       <!-- 📸 FOTO GALERÍA 12 -->
-      <div class="galeria-overlay"><span>Feria de empleo</span></div>
+      <div class="galeria-overlay"><span>Feria Vocacional</span></div>
     </div>
 
-    <div class="galeria-item tall reveal" style="background-image:url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=70')">
+    <div class="galeria-item reveal" style="background-image:url('assets/logros20.jpg')">
       <!-- 📸 FOTO GALERÍA 13 -->
-      <div class="galeria-overlay"><span>Operación minera</span></div>
+      <div class="galeria-overlay"><span>Feria Vocacional</span></div>
     </div>
 
     <!-- ✅ AGREGA MÁS FOTOS COPIANDO CUALQUIERA DE LOS BLOQUES .galeria-item -->
