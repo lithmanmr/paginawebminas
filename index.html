@@ -11,7 +11,7 @@
   <!-- SEO y Vista Previa en Google / Redes Sociales -->
   <meta name="description" content="Centro de Estudiantes de Ingeniería de Minas (CEIM) de la Universidad Nacional de San Cristóbal de Huamanga, Ayacucho, Perú. Representación estudiantil, eventos, asesorías y más.">
   <meta name="keywords" content="CEIM, Ingeniería de Minas, UNSCH, Ayacucho, centro de estudiantes, minería Perú">
-  <meta name="author" content="CEIM – UNSCH">
+  <meta name="author" content="CEIM UNSCH">
 
   <!-- Open Graph (vista previa en Google, Facebook, WhatsApp) -->
   <meta property="og:title" content="CEIM UNSCH | Centro de Estudiantes de Ingeniería de Minas">
@@ -654,16 +654,8 @@
 
     /* ─────────────────────────────────────────────────────────
        🏆 CÓMO AGREGAR UN LOGRO
-       ─────────────────────────────────────────────────────────
-       Copia el bloque <div class="logro-card"> completo
-       y pégalo dentro de <div class="logros-grid">.
-       Cambia:
-         · El emoji en <div class="logro-icon"> → icono del logro
-         · <h3> → nombre del logro
-         · <p> → descripción del logro
-         · <span class="logro-año"> → año en que se obtuvo
-         · La URL en style="background:url(...)"
-           → foto del logro (opcional)
+       Las instrucciones están en el HTML, dentro de la sección
+       <section id="logros">. No hace falta tocar este estilo.
     ──────────────────────────────────────────────────────────── */
 
     .logro-card {
@@ -695,49 +687,156 @@
       padding:.25rem .7rem; border-radius:1px;
     }
 
+    /* ── GANADORES DE CADA LOGRO ── */
+    .logro-ganadores {
+      list-style:none; margin:1rem 0 0; padding:.85rem 0 0;
+      border-top:1px solid rgba(201,146,43,.2);
+    }
+    .logro-ganadores::before {
+      content:'Ganadores';
+      display:block; margin-bottom:.5rem;
+      font-size:.62rem; letter-spacing:.2em; text-transform:uppercase;
+      color:var(--oro);
+    }
+    .logro-ganadores li {
+      position:relative; padding-left:1.1rem; margin-bottom:.3rem;
+      font-size:.8rem; color:var(--blanco); line-height:1.4;
+    }
+    .logro-ganadores li::before {
+      content:'\f007'; font-family:'Font Awesome 6 Free'; font-weight:900;
+      position:absolute; left:0; top:.1rem;
+      font-size:.62rem; color:var(--oro);
+    }
+
+    /* ── FILTRO DE LOGROS POR AÑO ── */
+    .logros-filtro {
+      display:flex; flex-wrap:wrap; gap:.6rem;
+      margin-bottom:2rem;
+    }
+    .filtro-btn {
+      background:transparent; color:var(--gris-claro);
+      border:1px solid rgba(201,146,43,.35);
+      padding:.55rem 1.3rem; border-radius:2px;
+      font-family:inherit; font-size:.75rem; font-weight:600;
+      letter-spacing:.15em; text-transform:uppercase;
+      cursor:pointer; transition: background .2s, color .2s, border-color .2s;
+    }
+    .filtro-btn:hover { border-color:var(--oro); color:var(--oro); }
+    .filtro-btn.activo { background:var(--oro); border-color:var(--oro); color:var(--negro); }
+    .filtro-select { appearance:none; -webkit-appearance:none; }
+    .filtro-select option { background:var(--gris-oscuro); color:var(--blanco); }
+    .logro-card.oculto { display:none; }
+    .logro-card.aparecer { animation: logroAparecer .4s ease; }
+    @keyframes logroAparecer {
+      from { opacity:0; transform:translateY(12px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    @media (max-width:520px) {
+      .logros-filtro { gap:.5rem; }
+      .filtro-btn { flex:1 1 calc(33.333% - .5rem); padding:.6rem .5rem; text-align:center; }
+    }
+
     /* ============================================================
        GALERÍA DE FOTOS
        ============================================================ */
     #galeria { background: var(--carbon); }
-    .galeria-grid {
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
-      gap:.75rem;
-    }
 
     /* ─────────────────────────────────────────────────────────
-       📷 CÓMO AGREGAR UNA FOTO A LA GALERÍA
-       ─────────────────────────────────────────────────────────
-       Copia el bloque <div class="galeria-item"> completo
-       y pégalo dentro de <div class="galeria-grid">.
-       Cambia:
-         · style="background-image:url(...)" → ruta de tu foto
-         · El texto del <span> → descripción de la foto
-       Puedes tener las clases "tall" (alta) o "wide" (ancha)
-       para hacer algunas fotos más grandes.
+       📷 CÓMO AGREGAR FOTOS A LA GALERÍA
+       Las instrucciones están en el HTML, dentro de la sección
+       <section id="galeria">. No hace falta tocar este estilo.
     ──────────────────────────────────────────────────────────── */
 
-    .galeria-item {
-      background: var(--roca) center/cover;
-      min-height:220px;
-      position:relative; overflow:hidden;
-      cursor:pointer;
-      border-radius:2px;
+    /* Cada evento es un grupo con su título y sus fotos */
+    .galeria-evento { margin-bottom:3rem; }
+    .galeria-evento:last-child { margin-bottom:0; }
+    .galeria-evento.oculto { display:none; }
+    .galeria-evento.aparecer { animation: logroAparecer .4s ease; }
+    .galeria-evento-cabecera {
+      display:flex; align-items:baseline; justify-content:space-between;
+      gap:1rem; margin-bottom:1rem; padding-bottom:.6rem;
+      border-bottom:1px solid rgba(201,146,43,.2);
     }
-    .galeria-item.tall { grid-row: span 2; min-height:460px; }
-    .galeria-item.wide { grid-column: span 2; }
-    .galeria-overlay {
-      position:absolute; inset:0;
-      background:rgba(0,0,0,.55);
-      display:flex; align-items:flex-end;
-      padding:1rem;
-      opacity:0; transition: opacity .3s;
+    .galeria-evento-titulo {
+      font-size:1rem; font-weight:700; color:var(--blanco);
+      letter-spacing:.05em; text-transform:uppercase; margin:0;
     }
-    .galeria-item:hover .galeria-overlay { opacity:1; }
-    .galeria-overlay span {
-      font-size:.75rem; letter-spacing:.1em;
+    .galeria-evento-cantidad {
+      font-size:.68rem; letter-spacing:.15em; text-transform:uppercase;
+      color:var(--oro); white-space:nowrap;
+    }
+
+    /* Mosaico justificado: filas de igual altura, cada foto completa
+       en su proporción real (sin recortes ni huecos).
+       --r = ancho/alto de la foto (lo calcula el script solo). */
+    .galeria-fotos {
+      --alto: 230px;
+      display:flex; flex-wrap:wrap; align-items:flex-start; gap:.6rem;
+    }
+    .galeria-fotos::after { content:''; flex-grow:999999; }
+    .galeria-fotos img {
+      --r: 1.5;
+      flex-grow: var(--r);
+      flex-basis: calc(var(--r) * var(--alto));
+      width:0; height:auto; aspect-ratio: var(--r);
+      object-fit:cover; border-radius:2px;
+      background:var(--roca); cursor:zoom-in;
+      transition: transform .3s, filter .3s, box-shadow .3s;
+    }
+    .galeria-fotos img:hover,
+    .galeria-fotos img:focus-visible {
+      filter:brightness(1.08); transform:translateY(-3px);
+      box-shadow:0 10px 30px rgba(0,0,0,.45);
+    }
+    .galeria-fotos img:focus-visible { outline:2px solid var(--oro); outline-offset:2px; }
+
+    /* ── VISOR DE FOTOS (LIGHTBOX) ── */
+    .lightbox {
+      position:fixed; inset:0; z-index:9999;
+      background:rgba(5,6,8,.95);
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      padding:4rem 4.5rem 2rem;
+      opacity:0; visibility:hidden;
+      transition: opacity .3s, visibility .3s;
+    }
+    .lightbox.open { opacity:1; visibility:visible; }
+    .lightbox-figure {
+      margin:0; max-width:1100px; width:100%;
+      display:flex; flex-direction:column; align-items:center;
+    }
+    .lightbox-img {
+      max-width:100%; max-height:calc(100vh - 11rem);
+      object-fit:contain; border-radius:2px;
+      box-shadow:0 10px 40px rgba(0,0,0,.6);
+      transform:scale(.96); transition: transform .3s;
+      user-select:none; -webkit-user-drag:none;
+    }
+    .lightbox.open .lightbox-img { transform:scale(1); }
+    .lightbox-caption {
+      margin-top:1rem; width:100%;
+      display:flex; justify-content:space-between; align-items:center; gap:1rem;
+      border-top:2px solid var(--oro); padding-top:.75rem;
+    }
+    .lightbox-caption span {
+      font-size:.85rem; letter-spacing:.1em;
       text-transform:uppercase; color:var(--blanco);
     }
+    .lightbox-counter {
+      font-size:.75rem; color:var(--oro); white-space:nowrap;
+    }
+    .lightbox-btn {
+      position:absolute; background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.15); color:var(--blanco);
+      width:48px; height:48px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.1rem; cursor:pointer;
+      transition: background .2s, color .2s;
+    }
+    .lightbox-btn:hover { background:var(--oro); color:var(--negro); }
+    .lightbox-close { top:1rem; right:1rem; }
+    .lightbox-prev  { left:1rem;  top:50%; transform:translateY(-50%); }
+    .lightbox-next  { right:1rem; top:50%; transform:translateY(-50%); }
 
     /* ============================================================
        DIRECTIVA / EQUIPO
@@ -1059,8 +1158,22 @@
         }
     }
     
+    @media (max-width:768px) {
+      .galeria-fotos { --alto: 170px; }
+      .lightbox { padding:3.5rem 1rem 5.5rem; }
+      .lightbox-img { max-height:calc(100vh - 13rem); }
+      .lightbox-caption span { font-size:.75rem; }
+      .lightbox-btn { width:42px; height:42px; }
+      .lightbox-prev, .lightbox-next { top:auto; bottom:1rem; transform:none; }
+      .lightbox-prev { left:calc(50% - 52px); }
+      .lightbox-next { right:calc(50% - 52px); }
+      .lightbox-close { top:.75rem; right:.75rem; }
+    }
+
     @media (max-width:520px) {
-      .galeria-item.wide { grid-column:span 1; }
+      .galeria-fotos { --alto: 120px; gap:.4rem; }
+      .galeria-evento { margin-bottom:2.25rem; }
+      .galeria-evento-titulo { font-size:.85rem; }
       .sobre-features { grid-template-columns:1fr; }
       .univ-data-grid { grid-template-columns:1fr; }
     }
@@ -1965,69 +2078,40 @@
     <div class="divider"></div>
   </div>
 
+  <!--
+  ════════════════════════════════════════════════════════════
+  📅 CÓMO ACTUALIZAR LOS EVENTOS
+  ────────────────────────────────────────────────────────────
+  ▸ AGREGAR UN EVENTO:
+      1. Copia un bloque completo, desde  <div class="evento-item reveal">
+         hasta su  </div>  final (están marcados con 📅).
+      2. Pégalo en el lugar que le toca por FECHA
+         (el más cercano arriba, el más lejano abajo).
+      3. Cambia:
+         · evento-dia  → número del día      (ej: 23)
+         · evento-mes  → mes en 3 letras     (ej: Nov)
+         · <h3>        → nombre del evento
+         · <p>         → descripción corta
+         · evento-lugar → lugar (deja el 📍 al inicio)
+         · url('assets/...') → foto del evento
+      4. OPCIONAL · Hora o rango de fechas: dentro de
+         <div class="evento-meta"> agrega una línea así:
+           <span class="evento-hora">🕘 9:00 AM</span>
+           <span class="evento-hora">📅 Del 23 al 27 de noviembre</span>
+
+  ▸ BORRAR UN EVENTO QUE YA PASÓ:
+      Borra su bloque completo (desde el comentario 📅 hasta su </div>).
+      Estas instrucciones están FUERA de los eventos: no se pierden.
+
+  ▸ FOTOS: guárdalas en la carpeta "assets". Usa nombres SIN espacios
+    ni tildes, ej: senamin_2026.jpg  (no "Senamin 2026.jpg").
+    En celular la foto del evento no se muestra (es normal).
+  ════════════════════════════════════════════════════════════
+  -->
+
   <div class="eventos-list">
 
-    <!--
-    ════════════════════════════════════════════════════════
-    📅 EVENTO 1
-    Copia este bloque para agregar más eventos.
-    ════════════════════════════════════════════════════════
-    -->
-    <div class="evento-item reveal">
-      <div class="evento-fecha-box">
-        <!-- 📝 Cambia el día y mes -->
-        <span class="evento-dia">23</span>
-        <span class="evento-mes">Abr</span>
-      </div>
-      <div class="evento-info">
-        <!-- 📝 Cambia el nombre, descripción, hora y lugar del evento -->
-        <h3>Aniversario de la Escuela Profesional de Ingeniería de Minas</h3>
-        <p>La reconocida Escuela Profesional de Ingeniería de Minas cumple 
-          68 años de imparable labor formando profesionales íntegros y altamente capacitados.</p>
-        <div class="evento-meta">
-          <span class="evento-hora">🕘 9:00 AM</span>
-          <span class="evento-lugar">📍 Auditorio EPIM UNSCH</span>
-        </div>
-      </div>
-      <div class="evento-img" style="background-image:url('assets/minas.jpeg'); border-radius: 8px;">
-        <!--
-        📸 FOTO DEL EVENTO 1
-        Reemplaza la URL por la foto real del evento.
-        -->
-      </div>
-    </div>
-
-    <!--
-    ════════════════════════════════════════════════════════
-    📅 EVENTO 2
-    ════════════════════════════════════════════════════════
-    -->
-    <div class="evento-item reveal">
-      <div class="evento-fecha-box">
-        <span class="evento-dia">3</span>
-        <span class="evento-mes">Jul</span>
-      </div>
-      <div class="evento-info">
-        <h3>Aniversario de la Universidad Nacional San Cristóbal de Huamanga</h3>
-        <p>Conmemorando su fundación en 1677 y su posterior reapertura. La Tricentenaria 
-          universidad celebra su 349° aniversario de fundación y 69° de reapertura.</p>
-        <div class="evento-meta">
-          <span class="evento-hora">🕗 9:00 AM</span>
-          <span class="evento-lugar">📍 Campo UNSCH</span>
-        </div>
-      </div>
-      <div class="evento-img" style="background-image:url('assets/fachada\ unsch\ .jpg'); border-radius: 8px;">
-        <!--
-        📸 FOTO DEL EVENTO 2
-        -->
-      </div>
-    </div>
-
-    <!--
-    ════════════════════════════════════════════════════════
-    📅 EVENTO 3
-    ════════════════════════════════════════════════════════
-    -->
+    <!-- 📅 EVENTO · CONEIMIN UNI 2026 ════════════════════════ -->
     <div class="evento-item reveal">
       <div class="evento-fecha-box">
         <span class="evento-dia">24</span>
@@ -2040,18 +2124,10 @@
           <span class="evento-lugar">📍 Lima</span>
         </div>
       </div>
-      <div class="evento-img" style="background-image:url('assets/evento1.webp'); border-radius: 8px;">
-        <!--
-        📸 FOTO DEL EVENTO 3
-        -->
-      </div>
+      <div class="evento-img" style="background-image:url('assets/evento1.webp'); border-radius: 8px;"></div>
     </div>
 
-    <!--
-    ════════════════════════════════════════════════════════
-    📅 EVENTO 4
-    ════════════════════════════════════════════════════════
-    -->
+    <!-- 📅 EVENTO · V Simposio de Ventilación de Minas ═══════ -->
     <div class="evento-item reveal">
       <div class="evento-fecha-box">
         <span class="evento-dia">31</span>
@@ -2064,18 +2140,10 @@
           <span class="evento-lugar">📍 Ayacucho</span>
         </div>
       </div>
-      <div class="evento-img" style="background-image:url('assets/noticias_simposio.jpeg'); border-radius: 8px;">
-        <!--
-        📸 FOTO DEL EVENTO 3
-        -->
-      </div>
+      <div class="evento-img" style="background-image:url('assets/noticias_simposio.jpeg'); border-radius: 8px;"></div>
     </div>
 
-    <!--
-    ════════════════════════════════════════════════════════
-    📅 EVENTO 5
-    ════════════════════════════════════════════════════════
-    -->
+    <!-- 📅 EVENTO · ANDESMIN Ayacucho 2026 ═══════════════════ -->
     <div class="evento-item reveal">
       <div class="evento-fecha-box">
         <span class="evento-dia">29</span>
@@ -2088,14 +2156,27 @@
           <span class="evento-lugar">📍 Ayacucho</span>
         </div>
       </div>
-      <div class="evento-img" style="background-image:url('assets/noticias_andesmin.jpg'); border-radius: 8px;">
-        <!--
-        📸 FOTO DEL EVENTO 3
-        -->
-      </div>
+      <div class="evento-img" style="background-image:url('assets/noticias_andesmin.jpg'); border-radius: 8px;"></div>
     </div>
 
-    <!-- ✅ AGREGA MÁS EVENTOS COPIANDO EL BLOQUE .evento-item -->
+    <!-- 📅 EVENTO · SENAMIN UNH 2026 ══════════════════════════ -->
+    <div class="evento-item reveal">
+      <div class="evento-fecha-box">
+        <span class="evento-dia">23</span>
+        <span class="evento-mes">Nov</span>
+      </div>
+      <div class="evento-info">
+        <h3>XXXII Seminario Nacional de Minería (SENAMIN UNH 2026)</h3>
+        <p>¡La experiencia minera que estabas esperando te espera en Huancavelica! Cinco días de aprendizaje, competencias técnicas, integración universitaria y experiencias que fortalecerán tu formación profesional en Ingeniería de Minas.</p>
+        <div class="evento-meta">
+          <span class="evento-hora">📅 Del 23 al 27 de noviembre</span>
+          <span class="evento-lugar">📍 Universidad Nacional de Huancavelica</span>
+        </div>
+      </div>
+      <div class="evento-img" style="background-image:url('assets/senamin 2026.jpg'); border-radius: 8px;"></div>
+    </div>
+
+    <!-- ⬆️ Fin de la lista de eventos. Instrucciones al inicio de esta sección. -->
 
   </div>
 </section>
@@ -2111,74 +2192,157 @@
     <div class="divider"></div>
   </div>
 
+  <!--
+  ════════════════════════════════════════════════════════════
+  🏆 CÓMO ACTUALIZAR LOS LOGROS
+  ────────────────────────────────────────────────────────────
+  ▸ AGREGAR UN LOGRO:
+      1. Copia un bloque completo, desde  <div class="logro-card reveal">
+         hasta su  </div>  final.
+      2. Pégalo ARRIBA de todos (lo más nuevo va primero).
+      3. Cambia:
+         · logro-icon → medalla: 🥇 1er lugar · 🥈 2do · 🥉 3ro · ⭐ otros
+         · <h3>       → puesto y concurso (ej: 1er Lugar en el CONEIMIN UNI 2026)
+         · <p>        → descripción y categoría
+         · logro-año  → mes, AÑO y ciudad (ej: Agosto, 2026 -  Lima)
+           ⚠️ El AÑO es obligatorio: con él se crea solo el botón
+              del filtro. Si falta, el logro solo sale en "Todos".
+
+  ▸ GANADORES (opcional):
+      Dentro de <ul class="logro-ganadores"> va una línea por estudiante:
+        <li>Nombres Apellidos</li>
+      Para agregar uno, copia una línea <li>. Para quitarlo, bórrala.
+      Si un logro no tiene ganadores, borra toda la lista
+      (desde <ul ...> hasta </ul>) y la tarjeta se ve igual de bien.
+
+  ▸ FILTRO POR AÑO: se arma SOLO. No hay que tocar nada.
+      Muestra los 3 años más recientes como botón; los más antiguos
+      aparecen en el menú "Años anteriores".
+  ════════════════════════════════════════════════════════════
+  -->
+
+  <!-- 📅 Aquí aparecen los botones del filtro (no tocar, se llena solo) -->
+  <div class="logros-filtro" id="logrosFiltro" role="group" aria-label="Filtrar logros por año"></div>
+
   <div class="logros-grid">
 
-    <!--
-    ════════════════════════════════════════════════════════
-    🏆 LOGRO 1
-    Copia este bloque para agregar más logros.
-    ════════════════════════════════════════════════════════
-    -->
+    <!-- 🏆 LOGROS 2026 · CONEIMIN UNI (Lima, agosto 2026) ═════ -->
     <div class="logro-card reveal">
-      <!-- 📝 Cambia el emoji del ícono -->
       <div class="logro-icon">🥇</div>
-      <!-- 📝 Cambia el título del logro -->
-      <h3>1er Lugar – CONEIMIN PUCP 2025</h3>
-      <!-- 📝 Cambia la descripción -->
+      <h3>1er Lugar en el CONEIMIN UNI 2026</h3>
+      <p>Nuestros estudiantes obtuvieron el primer lugar en el congreso nacional de estudiantes de Ingeniería de Minas, en la categoría de PLANEAMIENTO SUPERFICIAL.</p>
+      <!-- 👥 GANADORES · Un <li> por cada estudiante -->
+      <ul class="logro-ganadores">
+        <li>Luis Eduardo Dávila Auqui</li>
+        <li>Frank Diego Tucno Núñez</li>
+        <li>Jadielson Palomino Bañico</li>
+        <li>Jhon Harol Berrocal Sánchez</li>
+        <li>Jhosep Emilio Guillén Chaccere</li>
+      </ul>
+      <span class="logro-año">Agosto, 2026 -  Lima</span>
+    </div>
+
+    <div class="logro-card reveal">
+      <div class="logro-icon">🥇</div>
+      <h3>1er Lugar en el CONEIMIN UNI 2026</h3>
       <p>Nuestros estudiantes obtuvieron el primer lugar en el congreso nacional de estudiantes de Ingeniería de Minas, en la categoría de TOPOGRAFÍA MINERA.</p>
-      <!-- 📝 Cambia el año -->
+      <!-- 👥 GANADORES · Un <li> por cada estudiante -->
+      <ul class="logro-ganadores">
+        <li>Brandown Alexis Huamán Cóndor</li>
+        <li>Kerry Gonzalo Gil Tineo</li>
+        <li>Frank Marcelo Ccarhuaypiña Navarro</li>
+        <li>Eder Mijael Cáceres Guevara</li>
+      </ul>
+      <span class="logro-año">Agosto, 2026 -  Lima</span>
+    </div>
+
+    <div class="logro-card reveal">
+      <div class="logro-icon">🥇</div>
+      <h3>1er Lugar en el CONEIMIN UNI 2026</h3>
+      <p>Nuestros estudiantes obtuvieron el primer lugar en el congreso nacional de estudiantes de Ingeniería de Minas, en la categoría de PERFORACIÓN Y VOLADURA.</p>
+      <!-- 👥 GANADORES · Un <li> por cada estudiante -->
+      <ul class="logro-ganadores">
+        <li>Luis Guillermo Gálvez Morales</li>
+        <li>Kerry Gonzalo Gil Tineo</li>
+      </ul>
+      <span class="logro-año">Agosto, 2026 -  Lima</span>
+    </div>
+
+    <div class="logro-card reveal">
+      <div class="logro-icon">🥈</div>
+      <h3>2do Lugar en el CONEIMIN UNI 2026</h3>
+      <p>Nuestros estudiantes obtuvieron el segundo lugar en el congreso nacional de estudiantes de Ingeniería de Minas, en la categoría de CONCENTRACIÓN DE MINERALES.</p>
+      <!-- 👥 GANADORES · Un <li> por cada estudiante -->
+      <ul class="logro-ganadores">
+        <li>Roy Ariel Muñoz Guevara</li>
+        <li>Nicole Alisson Herreras Vargas</li>
+      </ul>
+      <span class="logro-año">Agosto, 2026 -  Lima</span>
+    </div>
+
+    <div class="logro-card reveal">
+      <div class="logro-icon">🥈</div>
+      <h3>2do Lugar en el CONEIMIN UNI 2026</h3>
+      <p>Nuestros estudiantes obtuvieron el segundo lugar en el congreso nacional de estudiantes de Ingeniería de Minas, en la categoría de PROYECTOS DE INVESTIGACIÓN.</p>
+      <!-- 👥 GANADORES · Un <li> por cada estudiante -->
+      <ul class="logro-ganadores">
+        <li>Cristhian Hugo Gómez Chipana</li>
+        <li>Luis Eduardo Dávila Auqui</li>
+      </ul>
+      <span class="logro-año">Agosto, 2026 -  Lima</span>
+    </div>
+
+    <!-- 🏆 LOGROS 2025 · CONEIMIN PUCP (Lima, agosto 2025) ════ -->
+    <div class="logro-card reveal">
+      <div class="logro-icon">🥇</div>
+      <h3>1er Lugar en el CONEIMIN PUCP 2025</h3>
+      <p>Nuestros estudiantes obtuvieron el primer lugar en el congreso nacional de estudiantes de Ingeniería de Minas, en la categoría de TOPOGRAFÍA MINERA.</p>
+      <!-- 👥 GANADORES · Un <li> por cada estudiante -->
+      <ul class="logro-ganadores">
+        <li>Lithman Adolfo Morales Rivera</li>
+        <li>Frank Diego Tucno Núñez</li>
+        <li>Luis Guillermo Gálvez Morales</li>
+        <li>Diego Alberto Cárdenas Casas</li>
+      </ul>
       <span class="logro-año">Agosto, 2025 -  Lima</span>
     </div>
 
-    <!--
-    ════════════════════════════════════════════════════════
-    🏆 LOGRO 2
-    ════════════════════════════════════════════════════════
-    -->
     <div class="logro-card reveal">
       <div class="logro-icon">🥉</div>
-      <h3>3er Lugar – CONEIMIN PUCP 2025</h3>
+      <h3>3er Lugar en el CONEIMIN PUCP 2025</h3>
       <p>Nuestros estudiantes obtuvieron el tercer lugar en el congreso nacional de estudiantes de Ingeniería de Minas, en la categoría de PLANEAMIENTO SUBTERRÁNEO.</p>
+      <!-- 👥 GANADORES · Un <li> por cada estudiante -->
+      <ul class="logro-ganadores">
+        <li>Luis Alberto Pariona Escriba</li>
+        <li>Edward Carlos Huamán</li>
+        <li>Jano Franklin Flores Núñez</li>
+      </ul>
       <span class="logro-año">Agosto, 2025 -  Lima</span>
     </div>
 
-    <!--
-    ════════════════════════════════════════════════════════
-    🏆 LOGRO 3
-    ════════════════════════════════════════════════════════
-    -->
+    <!-- 🏆 LOGROS 2024 · CONEIMIN UNSA (Arequipa, agosto 2024) ═ -->
     <div class="logro-card reveal">
       <div class="logro-icon">🥇</div>
-      <h3>1er Lugar – CONEIMIN UNSA 2024</h3>
+      <h3>1er Lugar en el CONEIMIN UNSA 2024</h3>
       <p>Nuestros estudiantes obtuvieron el primer lugar en el congreso nacional de estudiantes de Ingeniería de Minas, en la categoría de SEGURIDAD MINERA.</p>
       <span class="logro-año">Agosto, 2024 -  Arequipa</span>
     </div>
 
-    <!--
-    ════════════════════════════════════════════════════════
-    🏆 LOGRO 4
-    ════════════════════════════════════════════════════════
-    -->
     <div class="logro-card reveal">
       <div class="logro-icon">🥇</div>
-      <h3>1er Lugar – CONEIMIN UNSA 2024</h3>
+      <h3>1er Lugar en el CONEIMIN UNSA 2024</h3>
       <p>Nuestros estudiantes obtuvieron el primer lugar en el congreso nacional de estudiantes de Ingeniería de Minas, en la categoría de TOPOGRAFÍA MINERA.</p>
       <span class="logro-año">Agosto, 2024 -  Arequipa</span>
     </div>
 
-    <!--
-    ════════════════════════════════════════════════════════
-    🏆 LOGRO 5
-    ════════════════════════════════════════════════════════
-    -->
     <div class="logro-card reveal">
       <div class="logro-icon">⭐</div>
-      <h3>4to Lugar – CONEIMIN UNSA 2024</h3>
+      <h3>4to Lugar en el CONEIMIN UNSA 2024</h3>
       <p>Nuestros estudiantes obtuvieron el cuarto lugar en el congreso nacional de estudiantes de Ingeniería de Minas, en la categoría de MECÁNICA DE ROCAS.</p>
       <span class="logro-año">Agosto, 2024 -  Arequipa</span>
     </div>
 
-    <!-- ✅ AGREGA MÁS LOGROS COPIANDO EL BLOQUE .logro-card -->
+    <!-- ⬆️ Fin de la lista de logros. Lo nuevo va ARRIBA. Instrucciones al inicio de esta sección. -->
 
   </div>
 </section>
@@ -2199,7 +2363,7 @@
       <p class="section-desc">
         Estudiantes destacados de Ingeniería de Minas ofrecen asesorías personalizadas
         en cursos de ciencias básicas e ingeniería. Ya seas de Minas o cualquier otra carrera, aquí encuentras el refuerzo
-        que necesitas — virtual o presencial, a precio justo.
+        que necesitas, virtual o presencial y a precio justo.
       </p>
       <div class="asesorias-badge-wrap">
         <span class="asesoria-badge">✅ Estudiantes verificados</span>
@@ -2267,10 +2431,10 @@
       <div class="curso-top">
         <span class="curso-emoji">📐</span>
       </div>
-      <h4>Cálculo I — Límites y Derivadas</h4>
+      <h4>Cálculo I: Límites y Derivadas</h4>
       <p>Límites, continuidad, derivadas e introducción a la integral. Para cualquier carrera de ingeniería.</p>
       <div class="curso-footer">
-        <button class="curso-btn" onclick="abrirModalAsesoria('Cálculo I — Límites y Derivadas')">Solicitar →</button>
+        <button class="curso-btn" onclick="abrirModalAsesoria('Cálculo I: Límites y Derivadas')">Solicitar →</button>
       </div>
     </div>
 
@@ -2278,10 +2442,10 @@
       <div class="curso-top">
         <span class="curso-emoji">∫</span>
       </div>
-      <h4>Cálculo II — Integrales y Series</h4>
+      <h4>Cálculo II: Integrales y Series</h4>
       <p>Integral definida, técnicas de integración, series de Taylor y ecuaciones diferenciales básicas.</p>
       <div class="curso-footer">
-        <button class="curso-btn" onclick="abrirModalAsesoria('Cálculo II — Integrales y Series')">Solicitar →</button>
+        <button class="curso-btn" onclick="abrirModalAsesoria('Cálculo II: Integrales y Series')">Solicitar →</button>
       </div>
     </div>
 
@@ -2296,25 +2460,25 @@
       </div>
     </div>
 
-    <div class="curso-card visible" data-cat="fisica" data-nombre="Física I — Mecánica" >
+    <div class="curso-card visible" data-cat="fisica" data-nombre="Física I: Mecánica" >
       <div class="curso-top">
         <span class="curso-emoji">⚙️</span>
       </div>
-      <h4>Física I — Mecánica</h4>
+      <h4>Física I: Mecánica</h4>
       <p>Cinemática, dinámica, trabajo y energía, momentum y colisiones. Resolución de problemas con método.</p>
       <div class="curso-footer">
-        <button class="curso-btn" onclick="abrirModalAsesoria('Física I — Mecánica')">Solicitar →</button>
+        <button class="curso-btn" onclick="abrirModalAsesoria('Física I: Mecánica')">Solicitar →</button>
       </div>
     </div>
 
-    <div class="curso-card visible" data-cat="fisica" data-nombre="Física II — Electromagnetismo" >
+    <div class="curso-card visible" data-cat="fisica" data-nombre="Física II: Electromagnetismo" >
       <div class="curso-top">
         <span class="curso-emoji">⚡</span>
       </div>
-      <h4>Física II — Electromagnetismo</h4>
+      <h4>Física II: Electromagnetismo</h4>
       <p>Campos eléctricos y magnéticos, ley de Gauss, circuitos y ondas electromagnéticas.</p>
       <div class="curso-footer">
-        <button class="curso-btn" onclick="abrirModalAsesoria('Física II — Electromagnetismo')">Solicitar →</button>
+        <button class="curso-btn" onclick="abrirModalAsesoria('Física II: Electromagnetismo')">Solicitar →</button>
       </div>
     </div>
 
@@ -2438,7 +2602,7 @@
         <label>Modalidad preferida</label>
         <select id="asfModalidad">
           <option value="Virtual">Virtual (Zoom / Meet)</option>
-          <option value="Presencial">Presencial – UNSCH</option>
+          <option value="Presencial">Presencial en la UNSCH</option>
           <option value="Indistinto">Me es indistinto</option>
         </select>
       </div>
@@ -2467,150 +2631,121 @@
     <div class="divider"></div>
   </div>
 
-  <div class="galeria-grid">
+  <!--
+  ════════════════════════════════════════════════════════════
+  📷 CÓMO ACTUALIZAR LA GALERÍA
+  ────────────────────────────────────────────────────────────
+  ▸ AGREGAR UNA FOTO a un evento que ya existe:
+      Copia una línea <img ...> de ese evento, pégala debajo
+      y cambia la ruta: src="assets/nombre-de-tu-foto.jpg"
 
-    <!--
-    ════════════════════════════════════════════════════════
-    📷 FOTOS DE GALERÍA
-    Para cada foto:
-      · Cambia la URL en style="background-image:url(...)"
-        con la ruta de tu foto. Ej: url('img/galeria/foto1.jpg')
-      · Cambia el texto del <span> con la descripción
-      · Agrega la clase "tall" para hacer la foto más alta
-      · Agrega la clase "wide" para hacerla más ancha
-    ════════════════════════════════════════════════════════
-    -->
-    <div class="galeria-item wide reveal" style="background-image:url('assets/andesmin26_1.jpg')">
-      <!-- 📸 FOTO GALERÍA 9 · wide = más ancha -->
-      <div class="galeria-overlay"><span>Lanzamiento Andesmin 2026</span></div>
+  ▸ AGREGAR UN EVENTO NUEVO:
+      1. Copia un bloque completo, desde  <div class="galeria-evento ...">
+         hasta su  </div>  final (están marcados con 📁).
+      2. Pégalo ARRIBA de todos (lo más nuevo va primero).
+      3. Cambia el título. ⚠️ El título DEBE tener el AÑO,
+         ej: "Aniversario EPIM 2027". Con ese año se crea
+         solo el botón del filtro.
+      4. Cambia las fotos (una línea <img> por foto).
+
+  ▸ alt="..." es el texto que aparece abajo al abrir la foto.
+  ▸ No hace falta indicar el tamaño de las fotos: se acomodan
+    solas, completas y sin recortes.
+  ════════════════════════════════════════════════════════════
+  -->
+
+  <!-- 📅 Aquí aparecen los botones del filtro (no tocar, se llena solo
+       con el año escrito en el título de cada evento) -->
+  <div class="logros-filtro" id="galeriaFiltro" role="group" aria-label="Filtrar galería por año"></div>
+
+  <div class="galeria-eventos">
+
+    <!-- 📁 EVENTO ═══════════════════════════════════════════ -->
+    <div class="galeria-evento reveal">
+      <div class="galeria-evento-cabecera">
+        <h3 class="galeria-evento-titulo">Ganadores CONEIMIN UNI 2026</h3>
+      </div>
+      <div class="galeria-fotos">
+        <img src="assets/PU_1.jpeg" alt="Ganadores CONEIMIN UNI 2026" loading="lazy">
+        <img src="assets/PU_2.jpeg" alt="Ganadores CONEIMIN UNI 2026" loading="lazy">
+        <img src="assets/PU_3.jpeg" alt="Ganadores CONEIMIN UNI 2026" loading="lazy">
+        <img src="assets/PU_4.jpeg" alt="Ganadores CONEIMIN UNI 2026" loading="lazy">
+        <img src="assets/PU_5.jpeg" alt="Ganadores CONEIMIN UNI 2026" loading="lazy">
+      </div>
     </div>
 
-    <div class="galeria-item wide reveal" style="background-image:url('assets/andesmin26_3.jpg')">
-      <!-- 📸 FOTO GALERÍA 9 · wide = más ancha -->
-      <div class="galeria-overlay"><span>Lanzamiento Andesmin 2026</span></div>
+    <!-- 📁 EVENTO ═══════════════════════════════════════════ -->
+    <div class="galeria-evento reveal">
+      <div class="galeria-evento-cabecera">
+        <h3 class="galeria-evento-titulo">Lanzamiento ANDESMIN 2026</h3>
+      </div>
+      <div class="galeria-fotos">
+        <img src="assets/andesmin26.jpg" alt="Lanzamiento ANDESMIN 2026" loading="lazy">
+        <img src="assets/andesmin26_1.jpg" alt="Lanzamiento ANDESMIN 2026" loading="lazy">
+        <img src="assets/andesmin26_3.jpg" alt="Lanzamiento ANDESMIN 2026" loading="lazy">
+        <img src="assets/andesmin26_4.jpg" alt="Lanzamiento ANDESMIN 2026" loading="lazy">
+        <img src="assets/andesmin26_5.jpeg" alt="Lanzamiento ANDESMIN 2026" loading="lazy">
+        <img src="assets/andesmin26_6.jpeg" alt="Lanzamiento ANDESMIN 2026" loading="lazy">
+        <img src="assets/logros17.jpg" alt="Lanzamiento ANDESMIN 2026" loading="lazy">
+        <img src="assets/logros18.jpg" alt="Lanzamiento ANDESMIN 2026" loading="lazy">
+      </div>
     </div>
 
-    <div class="galeria-item wide reveal" style="background-image:url('assets/andesmin26_4.jpg')">
-      <!-- 📸 FOTO GALERÍA 9 · wide = más ancha -->
-      <div class="galeria-overlay"><span>Lanzamiento Andesmin 2026</span></div>
+    <!-- 📁 EVENTO ═══════════════════════════════════════════ -->
+    <div class="galeria-evento reveal">
+      <div class="galeria-evento-cabecera">
+        <h3 class="galeria-evento-titulo">Pasacalle · Aniversario UNSCH 2026</h3>
+      </div>
+      <div class="galeria-fotos">
+        <img src="assets/logros10.jpg" alt="Pasacalle · Aniversario UNSCH 2026" loading="lazy">
+        <img src="assets/logros11.jpg" alt="Pasacalle · Aniversario UNSCH 2026" loading="lazy">
+      </div>
     </div>
 
-    <div class="galeria-item wide reveal" style="background-image:url('assets/andesmin26_5.jpeg')">
-      <!-- 📸 FOTO GALERÍA 9 · wide = más ancha -->
-      <div class="galeria-overlay"><span>Lanzamiento Andesmin 2026</span></div>
+    <!-- 📁 EVENTO ═══════════════════════════════════════════ -->
+    <div class="galeria-evento reveal">
+      <div class="galeria-evento-cabecera">
+        <h3 class="galeria-evento-titulo">Premiación CONEIMIN PUCP 2025</h3>
+      </div>
+      <div class="galeria-fotos">
+        <img src="assets/logros3.jpg" alt="Premiación CONEIMIN PUCP 2025" loading="lazy">
+        <img src="assets/logros4.jpg" alt="Premiación CONEIMIN PUCP 2025" loading="lazy">
+        <img src="assets/logros5.jpg" alt="Premiación CONEIMIN PUCP 2025" loading="lazy">
+        <img src="assets/logros6.jpg" alt="Premiación CONEIMIN PUCP 2025" loading="lazy">
+        <img src="assets/logros7.jpg" alt="Premiación CONEIMIN PUCP 2025" loading="lazy">
+        <img src="assets/logros8.jpg" alt="Premiación CONEIMIN PUCP 2025" loading="lazy">
+        <img src="assets/logros9.jpg" alt="Marco musical · Premiación CONEIMIN PUCP 2025" loading="lazy">
+        <img src="assets/logros1.jpg" alt="Premiación CONEIMIN PUCP 2025" loading="lazy">
+        <img src="assets/logros2.jpg" alt="Premiación CONEIMIN PUCP 2025" loading="lazy">
+      </div>
     </div>
 
-    <div class="galeria-item wide reveal" style="background-image:url('assets/andesmin26.jpg')">
-      <!-- 📸 FOTO GALERÍA 9 · wide = más ancha -->
-      <div class="galeria-overlay"><span>Lanzamiento Andesmin 2026</span></div>
+    <!-- 📁 EVENTO ═══════════════════════════════════════════ -->
+    <div class="galeria-evento reveal">
+      <div class="galeria-evento-cabecera">
+        <h3 class="galeria-evento-titulo">Feria Vocacional 2025</h3>
+      </div>
+      <div class="galeria-fotos">
+        <img src="assets/logros12.jpg" alt="Feria Vocacional 2025" loading="lazy">
+        <img src="assets/logros20.jpg" alt="Feria Vocacional 2025" loading="lazy">
+      </div>
     </div>
 
-    <div class="galeria-item reveal" style="background-image:url('assets/andesmin26_6.jpeg')">
-      <!-- 📸 FOTO GALERÍA 2 -->
-      <div class="galeria-overlay"><span>Lanzamiento Andesmin 2026</span></div>
+    <!-- 📁 EVENTO ═══════════════════════════════════════════ -->
+    <div class="galeria-evento reveal">
+      <div class="galeria-evento-cabecera">
+        <h3 class="galeria-evento-titulo">Bienvenida de Cachimbos 2025</h3>
+      </div>
+      <div class="galeria-fotos">
+        <img src="assets/logros14.jpg" alt="Bienvenida de Cachimbos 2025" loading="lazy">
+        <img src="assets/logros13.jpg" alt="Bienvenida de Cachimbos 2025" loading="lazy">
+        <img src="assets/logros15.jpg" alt="Bienvenida de Cachimbos 2025" loading="lazy">
+        <img src="assets/logros16.jpg" alt="Bienvenida de Cachimbos 2025" loading="lazy">
+        <img src="assets/logros19.jpg" alt="Bienvenida de Cachimbos 2025" loading="lazy">
+      </div>
     </div>
 
-    <div class="galeria-item tall reveal" style="background-image:url('assets/logros14.jpg')">
-      <!-- 📸 FOTO GALERÍA 1 · Reemplaza la URL · Descripción abajo -->
-      <div class="galeria-overlay"><span>Bienvenida de Cachimbos</span></div>
-    </div>
-
-    <div class="galeria-item tall reveal" style="background-image:url('assets/logros13.jpg')">
-      <!-- 📸 FOTO GALERÍA 1 · Reemplaza la URL · Descripción abajo -->
-      <div class="galeria-overlay"><span>Bienvenida de Cachimbos</span></div>
-    </div>
-
-    <div class="galeria-item wide reveal" style="background-image:url('assets/logros15.jpg')">
-      <!-- 📸 FOTO GALERÍA 9 · wide = más ancha -->
-      <div class="galeria-overlay"><span>Bienvenida de Cachimbos</span></div>
-    </div>
-
-    <div class="galeria-item wide reveal" style="background-image:url('assets/logros16.jpg')">
-      <!-- 📸 FOTO GALERÍA 9 · wide = más ancha -->
-      <div class="galeria-overlay"><span>Bienvenida de Cachimbos</span></div>
-    </div>
-
-    <div class="galeria-item reveal" style="background-image:url('assets/logros19.jpg')">
-      <!-- 📸 FOTO GALERÍA 2 -->
-      <div class="galeria-overlay"><span>Bienvenida de Cachimbos</span></div>
-    </div>
-
-    <div class="galeria-item wide reveal" style="background-image:url('assets/logros17.jpg')">
-      <!-- 📸 FOTO GALERÍA 9 · wide = más ancha -->
-      <div class="galeria-overlay"><span>Lanzamiento Andesmin 2026</span></div>
-    </div>
-
-    <div class="galeria-item wide reveal" style="background-image:url('assets/logros18.jpg')">
-      <!-- 📸 FOTO GALERÍA 9 · wide = más ancha -->
-      <div class="galeria-overlay"><span>Lanzamiento Andesmin 2026</span></div>
-    </div>
-
-    <div class="galeria-item reveal" style="background-image:url('assets/logros1.jpg')">
-      <!-- 📸 FOTO GALERÍA 2 -->
-      <div class="galeria-overlay"><span>Premiación CONEIMIN 2025</span></div>
-    </div>
-
-    <div class="galeria-item reveal" style="background-image:url('assets/logros2.jpg')">
-      <!-- 📸 FOTO GALERÍA 2 -->
-      <div class="galeria-overlay"><span>Premiación CONEIMIN 2025</span></div>
-    </div>
-
-    <div class="galeria-item reveal" style="background-image:url('assets/logros3.jpg')">
-      <!-- 📸 FOTO GALERÍA 3 -->
-      <div class="galeria-overlay"><span>Premiación CONEIMIN 2025</span></div>
-    </div>
-
-    <div class="galeria-item wide reveal" style="background-image:url('assets/logros4.jpg')">
-      <!-- 📸 FOTO GALERÍA 4 · wide = más ancha -->
-      <div class="galeria-overlay"><span>Premiación CONEIMIN 2025</span></div>
-    </div>
-
-    <div class="galeria-item reveal" style="background-image:url('assets/logros5.jpg')">
-      <!-- 📸 FOTO GALERÍA 5 -->
-      <div class="galeria-overlay"><span>Premiación CONEIMIN 2025</span></div>
-    </div>
-
-    <div class="galeria-item reveal" style="background-image:url('assets/logros6.jpg')">
-      <!-- 📸 FOTO GALERÍA 6 -->
-      <div class="galeria-overlay"><span>Premiación CONEIMIN 2025</span></div>
-    </div>
-
-    <div class="galeria-item reveal" style="background-image:url('assets/logros7.jpg')">
-      <!-- 📸 FOTO GALERÍA 7 -->
-      <div class="galeria-overlay"><span>Premiación CONEIMIN 2025</span></div>
-    </div>
-
-    <div class="galeria-item reveal" style="background-image:url('assets/logros9.jpg')">
-      <!-- 📸 FOTO GALERÍA 8 -->
-      <div class="galeria-overlay"><span>Marco musical premiación</span></div>
-    </div>
-
-    <div class="galeria-item wide reveal" style="background-image:url('assets/logros8.jpg')">
-      <!-- 📸 FOTO GALERÍA 9 · wide = más ancha -->
-      <div class="galeria-overlay"><span>Premiación CONEIMIN 2025</span></div>
-    </div>
-
-    <div class="galeria-item reveal" style="background-image:url('assets/logros10.jpg')">
-      <!-- 📸 FOTO GALERÍA 10 -->
-      <div class="galeria-overlay"><span>Pasacalle - Aniversario UNSCH</span></div>
-    </div>
-
-    <div class="galeria-item reveal" style="background-image:url('assets/logros11.jpg')">
-      <!-- 📸 FOTO GALERÍA 11 -->
-      <div class="galeria-overlay"><span>Pasacalle - Aniversario UNSCH</span></div>
-    </div>
-
-    <div class="galeria-item reveal" style="background-image:url('assets/logros12.jpg')">
-      <!-- 📸 FOTO GALERÍA 12 -->
-      <div class="galeria-overlay"><span>Feria Vocacional</span></div>
-    </div>
-
-    <div class="galeria-item reveal" style="background-image:url('assets/logros20.jpg')">
-      <!-- 📸 FOTO GALERÍA 13 -->
-      <div class="galeria-overlay"><span>Feria Vocacional</span></div>
-    </div>
-
-    <!-- ✅ AGREGA MÁS FOTOS COPIANDO CUALQUIERA DE LOS BLOQUES .galeria-item -->
+    <!-- ⬆️ Fin de la galería. Lo nuevo va ARRIBA. Instrucciones al inicio de esta sección. -->
 
   </div>
 </section>
@@ -2963,7 +3098,7 @@
         </div>
         <div class="univ-dato">
           <strong>Licenciada</strong>
-          <span>SUNEDU – Condición</span>
+          <span>Condición SUNEDU</span>
         </div>
       </div>
     </div>
@@ -2981,53 +3116,37 @@
     <div class="divider"></div>
   </div>
 
+  <!--
+  ════════════════════════════════════════════════════════════
+  📄 CÓMO ACTUALIZAR LOS COMUNICADOS Y DOCUMENTOS
+  ────────────────────────────────────────────────────────────
+  ▸ AGREGAR UN DOCUMENTO:
+      1. Copia un bloque completo, desde  <a href=...  hasta su  </a>
+         (están marcados con 📄).
+      2. Pégalo ARRIBA de todos (lo más nuevo va primero).
+      3. Cambia:
+         · com-icon  → un emoji (📄 comunicado · 📋 acta · 🗳️ elecciones · 💰 informe)
+         · com-tipo  → tipo de documento (ej: Comunicado, Acta, Informe)
+         · com-fecha → mes y año (ej: Mayo 2026)
+         · <strong>  → título del documento
+         · <small>   → descripción corta
+
+  ▸ ENLACE AL DOCUMENTO (elige una de las dos formas):
+      · Si YA tienes el PDF: guárdalo en la carpeta "assets" (nombre sin
+        espacios ni tildes) y deja la primera línea así:
+          <a href="assets/nombre-del-archivo.pdf" target="_blank" class="comunicado-item reveal">
+      · Si el documento AÚN NO está listo: cambia la primera línea por esta
+        (al hacer clic avisa "Pronto estará disponible"):
+          <a href="#" onclick="alert('📋 Documento en proceso de publicación. Pronto estará disponible.'); return false;" class="comunicado-item reveal">
+
+  ▸ BORRAR UN DOCUMENTO: borra su bloque completo (desde el comentario 📄
+    hasta su </a>). Estas instrucciones están FUERA: no se pierden.
+  ════════════════════════════════════════════════════════════
+  -->
+
   <div class="comunicados-list">
 
-    <!--
-    ════════════════════════════════════════════════════════
-    📄 COMUNICADO / DOCUMENTO 1
-    Copia este bloque para agregar más documentos.
-    · href → pon la URL o ruta del PDF/documento
-    ════════════════════════════════════════════════════════
-    -->
-    <a href="#" onclick="alert('📋 Documento en proceso de publicación. Pronto estará disponible.'); return false;" class="comunicado-item reveal">
-      <div class="com-icon">📄</div>
-      <div class="com-body">
-        <div class="com-meta">
-          <!-- 📝 Cambia el tipo y fecha -->
-          <span class="com-tipo">Comunicado</span>
-          <span class="com-fecha"> Julio 2026</span>
-        </div>
-        <!-- 📝 Cambia título y descripción -->
-        <strong>Cronograma de Actividades – Semana de Aniversario UNSCH 2026</strong>
-        <small>Programa oficial de eventos, ponentes y horarios 2026.</small>
-      </div>
-      <div class="com-arrow">→</div>
-    </a>
-
-    <!--
-    ════════════════════════════════════════════════════════
-    📄 COMUNICADO 2
-    ════════════════════════════════════════════════════════
-    -->
-    <a href="#" onclick="alert('📋 Documento en proceso de publicación. Pronto estará disponible.'); return false;" class="comunicado-item reveal">
-      <div class="com-icon">📋</div>
-      <div class="com-body">
-        <div class="com-meta">
-          <span class="com-tipo">Acta</span>
-          <span class="com-fecha">2026</span>
-        </div>
-        <strong>Acta de Asamblea General Ordinaria – Febrero 2026</strong>
-        <small>Resoluciones y acuerdos tomados en la última asamblea general de estudiantes.</small>
-      </div>
-      <div class="com-arrow">→</div>
-    </a>
-
-    <!--
-    ════════════════════════════════════════════════════════
-    📄 COMUNICADO 3
-    ════════════════════════════════════════════════════════
-    -->
+    <!-- 📄 DOCUMENTO · Resultados Elecciones CEIMINAS 2026 ═══ -->
     <a href="assets/LEGADO-MINERO.pdf" target="_blank" class="comunicado-item reveal">
       <div class="com-icon">🗳️</div>
       <div class="com-body">
@@ -3041,25 +3160,7 @@
       <div class="com-arrow">→</div>
     </a>
 
-    <!--
-    ════════════════════════════════════════════════════════
-    📄 COMUNICADO 4
-    ════════════════════════════════════════════════════════
-    -->
-    <a href="#" onclick="alert('📋 Documento en proceso de publicación. Pronto estará disponible.'); return false;" class="comunicado-item reveal">
-      <div class="com-icon">💰</div>
-      <div class="com-body">
-        <div class="com-meta">
-          <span class="com-tipo">Informe</span>
-          <span class="com-fecha">Diciembre 2026</span>
-        </div>
-        <strong>Informe Económico 2026 – Gestión CEIMINAS</strong>
-        <small>Balance general de ingresos y gastos del Centro de Estudiantes correspondiente al año 2026.</small>
-      </div>
-      <div class="com-arrow">→</div>
-    </a>
-
-    <!-- ✅ AGREGA MÁS COMUNICADOS COPIANDO EL BLOQUE .comunicado-item -->
+    <!-- ⬆️ Fin de la lista de documentos. Lo nuevo va ARRIBA. Instrucciones al inicio de esta sección. -->
 
   </div>
 </section>
@@ -3155,15 +3256,13 @@
           <div class="cx-horario-dot"></div>
           <div class="cx-horario-text">
             <strong>Atención</strong>
-            <p>Lun – Vie &nbsp;|&nbsp; 8:00 AM – 6:00 PM</p>
+            <p>Lunes a viernes &nbsp;|&nbsp; 8:00 AM a 6:00 PM</p>
           </div>
         </div>
 
         <div class="cx-redes">
           <a href="https://www.facebook.com/ceim.unsch.2025?locale=es_LA" class="cx-red" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://instagram.com/TU_USUARIO" class="cx-red" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
           <a href="https://wa.me/51966733364" class="cx-red" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-          <a href="https://tiktok.com/@TU_USUARIO" class="cx-red" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
         </div>
       </div>
 
@@ -3245,7 +3344,7 @@
 
     // ── Mensaje profesional
     const texto =
-  `*CEIM — Centro de Estudiantes de Ingeniería de Minas*
+  `*CEIM: Centro de Estudiantes de Ingeniería de Minas*
   *Universidad Nacional de San Cristóbal de Huamanga*
   *Ayacucho, Perú*
 
@@ -3286,7 +3385,7 @@
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <div class="footer-brand-name">CEIM – UNSCH</div>
+      <div class="footer-brand-name">CEIM UNSCH</div>
       <!--
       📝 TEXTO DEL FOOTER
       Edita la descripción del footer.
@@ -3327,9 +3426,6 @@
         <a href="https://www.facebook.com/ceim.unsch.2025" class="red-btn" target="_blank">
             <i class="fab fa-facebook-f"></i> Facebook
         </a>
-        <a href="https://instagram.com/TU_USUARIO" class="red-btn" target="_blank">
-            <i class="fab fa-instagram"></i> Instagram
-        </a>
         <a href="https://wa.me/51TUNUMERO" class="red-btn" target="_blank">
             <i class="fab fa-whatsapp"></i> WhatsApp
         </a>
@@ -3338,7 +3434,7 @@
   </div>
 
   <div class="footer-bottom">
-    <p>© 2026 <span>CEIM – UNSCH</span>. Todos los derechos reservados.</p>
+    <p>© 2026 <span>CEIM UNSCH</span>. Todos los derechos reservados.</p>
     <p>Hecho con ❤️ por los estudiantes de <span>Ingeniería de Minas</span></p>
   </div>
 </footer>
@@ -3429,11 +3525,11 @@
         msg.style.display = 'block';
         e.target.reset();
       } else {
-        btn.textContent = '❌ Error – Intenta de nuevo';
+        btn.textContent = '❌ Error. Intenta de nuevo';
       }
       btn.disabled = false;
     }).catch(() => {
-      btn.textContent = '❌ Error – Intenta de nuevo';
+      btn.textContent = '❌ Error. Intenta de nuevo';
       btn.disabled = false;
     });
     */
@@ -3484,7 +3580,7 @@
     const tipo      = document.getElementById('asfTipo').value;
 
     const texto =
-  `*CEIM – Solicitud de Asesoría*
+  `*CEIM: Solicitud de Asesoría*
   *Universidad Nacional de San Cristóbal de Huamanga*
 
   *Curso solicitado:* ${_cursoActual}
@@ -3550,7 +3646,7 @@
       icon: '🗺️',
       sub: 'Tectónica y estructuras',
       desc: 'Análisis de las deformaciones y estructuras geológicas que controlan los yacimientos.',
-      items: ['Fallas, pliegues y fracturas','Análisis cinemático de discontinuidades','Mapeo geológico estructural','Relación estructura–mineralización']
+      items: ['Fallas, pliegues y fracturas','Análisis cinemático de discontinuidades','Mapeo geológico estructural','Relación entre estructura y mineralización']
     },
     'Gestión Ambiental': {
       icon: '🌿',
@@ -3588,7 +3684,214 @@
     if (e.target === document.getElementById('tagModal'))
       document.getElementById('tagModal').classList.remove('open');
   }
+
+  /* ════════════════════════════════════════════════════════════
+     ⚙️ FUNCIONES AUTOMÁTICAS · NO ES NECESARIO MODIFICAR NADA AQUÍ
+     Lo que sigue hace funcionar solo: el acomodo de la galería,
+     el visor de fotos y los filtros por año de Logros y Galería.
+     Para agregar contenido, edita las secciones del HTML
+     (cada una tiene sus instrucciones al inicio).
+     ════════════════════════════════════════════════════════════ */
+
+  /* ── GALERÍA: PROPORCIÓN DE CADA FOTO Y CANTIDAD POR EVENTO ── */
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('#galeria .galeria-fotos img').forEach(foto => {
+      const ajustar = () => {
+        if (foto.naturalWidth && foto.naturalHeight)
+          foto.style.setProperty('--r', foto.naturalWidth / foto.naturalHeight);
+      };
+      if (foto.complete) ajustar();
+      foto.addEventListener('load', ajustar);
+      foto.tabIndex = 0;
+      foto.setAttribute('role', 'button');
+    });
+
+    document.querySelectorAll('#galeria .galeria-evento').forEach(evento => {
+      const n = evento.querySelectorAll('.galeria-fotos img').length;
+      const etiqueta = document.createElement('span');
+      etiqueta.className = 'galeria-evento-cantidad';
+      etiqueta.textContent = n + (n === 1 ? ' foto' : ' fotos');
+      evento.querySelector('.galeria-evento-cabecera').appendChild(etiqueta);
+    });
+  });
+
+  /* ── VISOR DE FOTOS DE LA GALERÍA ── */
+  document.addEventListener('DOMContentLoaded', function () {
+    const galeria = document.getElementById('galeria');
+    const box     = document.getElementById('lightbox');
+    const img     = document.getElementById('lightboxImg');
+    const texto   = document.getElementById('lightboxTexto');
+    const contador = document.getElementById('lightboxContador');
+    let fotos = [];
+    let actual = 0;
+
+    // Solo recorre las fotos visibles (las del año filtrado)
+    function abrirDesde(foto) {
+      const visibles = Array.from(galeria.querySelectorAll('.galeria-evento:not(.oculto) .galeria-fotos img'));
+      fotos = visibles.map(el => ({
+        src: el.currentSrc || el.src,
+        desc: el.alt || el.closest('.galeria-evento').querySelector('.galeria-evento-titulo').textContent.trim()
+      }));
+      abrir(visibles.indexOf(foto));
+    }
+
+    function mostrar(i) {
+      actual = (i + fotos.length) % fotos.length;
+      img.src = fotos[actual].src;
+      img.alt = fotos[actual].desc;
+      texto.textContent = fotos[actual].desc;
+      contador.textContent = (actual + 1) + ' / ' + fotos.length;
+    }
+
+    function abrir(i) {
+      mostrar(i);
+      box.classList.add('open');
+      box.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function cerrar() {
+      box.classList.remove('open');
+      box.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    galeria.addEventListener('click', e => {
+      const foto = e.target.closest('.galeria-fotos img');
+      if (foto) abrirDesde(foto);
+    });
+    galeria.addEventListener('keydown', e => {
+      const foto = e.target.closest('.galeria-fotos img');
+      if (foto && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); abrirDesde(foto); }
+    });
+    document.getElementById('lightboxCerrar').addEventListener('click', cerrar);
+    document.getElementById('lightboxPrev').addEventListener('click', () => mostrar(actual - 1));
+    document.getElementById('lightboxNext').addEventListener('click', () => mostrar(actual + 1));
+    box.addEventListener('click', e => { if (e.target === box) cerrar(); });
+
+    document.addEventListener('keydown', e => {
+      if (!box.classList.contains('open')) return;
+      if (e.key === 'Escape')     cerrar();
+      if (e.key === 'ArrowLeft')  mostrar(actual - 1);
+      if (e.key === 'ArrowRight') mostrar(actual + 1);
+    });
+
+    // Deslizar con el dedo en celular
+    let inicioX = null;
+    box.addEventListener('touchstart', e => { inicioX = e.touches[0].clientX; }, { passive: true });
+    box.addEventListener('touchend', e => {
+      if (inicioX === null) return;
+      const dx = e.changedTouches[0].clientX - inicioX;
+      if (Math.abs(dx) > 50) mostrar(actual + (dx < 0 ? 1 : -1));
+      inicioX = null;
+    });
+  });
+
+  /* ── FILTRO POR AÑO (se usa en Logros y en Galería) ──
+     Lee el año escrito en cada elemento y crea solo los botones:
+     los 3 años más recientes, "Años anteriores ▾" y "Todos". */
+  function crearFiltroPorAnio(filtro, cards, leerTexto) {
+    if (!filtro || !cards.length) return;
+
+    cards.forEach(card => {
+      const m = (leerTexto(card) || '').match(/\b(19|20)\d{2}\b/);
+      card.dataset.anio = m ? m[0] : '';
+    });
+
+    const anios = [...new Set(cards.map(c => c.dataset.anio).filter(Boolean))]
+      .sort((a, b) => b - a);
+    if (!anios.length) return;
+
+    const RECIENTES = 3; // cuántos años se muestran como botón
+    const recientes = anios.slice(0, RECIENTES);
+    const anteriores = anios.slice(RECIENTES);
+    let selector = null;
+
+    function filtrar(anio, control) {
+      filtro.querySelectorAll('.filtro-btn').forEach(b => {
+        b.classList.toggle('activo', b === control);
+        if (b.tagName === 'BUTTON') b.setAttribute('aria-pressed', b === control);
+      });
+      if (selector && control !== selector) selector.value = '';
+      cards.forEach(card => {
+        const mostrar = anio === 'todos' || card.dataset.anio === anio;
+        card.classList.toggle('oculto', !mostrar);
+        card.classList.remove('aparecer');
+        if (mostrar) {
+          card.classList.add('visible');
+          void card.offsetWidth; // reinicia la animación
+          card.classList.add('aparecer');
+        }
+      });
+    }
+
+    function crearBoton(anio, texto) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'filtro-btn';
+      btn.textContent = texto;
+      btn.addEventListener('click', () => filtrar(anio, btn));
+      filtro.appendChild(btn);
+      return btn;
+    }
+
+    // Botones de los años más recientes
+    const primerBoton = crearBoton(recientes[0], recientes[0]);
+    recientes.slice(1).forEach(anio => crearBoton(anio, anio));
+
+    // Años antiguos en un menú desplegable (solo si existen)
+    if (anteriores.length) {
+      selector = document.createElement('select');
+      selector.className = 'filtro-btn filtro-select';
+      selector.setAttribute('aria-label', 'Años anteriores');
+      selector.innerHTML = '<option value="">Años anteriores ▾</option>' +
+        anteriores.map(a => `<option value="${a}">${a}</option>`).join('');
+      selector.addEventListener('change', () => {
+        if (selector.value) filtrar(selector.value, selector);
+      });
+      filtro.appendChild(selector);
+    }
+
+    crearBoton('todos', 'Todos');
+
+    // Al cargar se muestra el año más reciente
+    filtrar(recientes[0], primerBoton);
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const texto = el => el ? el.textContent : '';
+
+    crearFiltroPorAnio(
+      document.getElementById('logrosFiltro'),
+      Array.from(document.querySelectorAll('#logros .logro-card')),
+      card => texto(card.querySelector('.logro-año'))
+    );
+
+    crearFiltroPorAnio(
+      document.getElementById('galeriaFiltro'),
+      Array.from(document.querySelectorAll('#galeria .galeria-evento')),
+      evento => texto(evento.querySelector('.galeria-evento-titulo'))
+    );
+  });
 </script>
+
+<!-- ════════ VISOR DE FOTOS (LIGHTBOX) ════════
+     ⚙️ No tocar. Se abre solo al hacer clic en una foto de la galería
+     y muestra el texto que tenga en alt="..." -->
+
+
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Visor de fotos">
+  <button class="lightbox-btn lightbox-close" id="lightboxCerrar" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+  <button class="lightbox-btn lightbox-prev" id="lightboxPrev" aria-label="Foto anterior"><i class="fa-solid fa-chevron-left"></i></button>
+  <figure class="lightbox-figure">
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <figcaption class="lightbox-caption">
+      <span id="lightboxTexto"></span>
+      <span class="lightbox-counter" id="lightboxContador"></span>
+    </figcaption>
+  </figure>
+  <button class="lightbox-btn lightbox-next" id="lightboxNext" aria-label="Foto siguiente"><i class="fa-solid fa-chevron-right"></i></button>
+</div>
 
 </body>
 </html>
